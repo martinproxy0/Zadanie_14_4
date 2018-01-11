@@ -63,8 +63,15 @@ var MovieDesc = React.createClass({
 });
 
 var MovieList = React.createClass({
+    propTypes: {
+        moviesElements: React.PropTypes.array.isRequired,
+    },
+        
     render: function() {
-        return React.createElement('ul', {}, moviesElements);
+        var items = this.props.moviesElements.map(function(movie) {
+                        return (React.createElement(Movie, { key: movie.id, movie: movie }));
+                    });
+        return React.createElement('ul', {}, items);
     }
 });
 
@@ -72,6 +79,6 @@ var moviesElements = movies.map(function(movie) {
     return (React.createElement(Movie, { key: movie.id, movie: movie }));
 });
 
-var element = React.createElement(MovieList, {});
+var element = React.createElement(MovieList, {moviesElements: movies});
 
 ReactDOM.render(element, document.getElementById('app'));
