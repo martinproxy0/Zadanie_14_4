@@ -75,10 +75,6 @@ var MovieList = React.createClass({
     }
 });
 
-var moviesElements = movies.map(function(movie) {
-    return (React.createElement(Movie, { key: movie.id, movie: movie }));
-});
-
 var element = React.createElement(MovieList, {moviesElements: movies});
 
 ReactDOM.render(element, document.getElementById('app'));
